@@ -40,16 +40,27 @@
             <div class="booking-form-container">
 
                 <!-- <form id="reservationForm" class="reservation-form" novalidate> -->
-                <form 
-                    id="reservationForm"
-                    class="reservation-form"
-                    name="reservation"
-                    action="https://formspree.io/f/mwpopgkd"
-                    method="POST"
-                    novalidate
-                  >
-                  <!-- Honeypot Formspree (optionnel) -->
-                    <input type="text" name="_gotcha" style="display:none">
+                    <form 
+                        id="reservationForm"
+                        class="reservation-form"
+                        name="reservation"
+                        method="POST"
+                        data-netlify="true"
+                        action="/merci.html"
+                        novalidate
+                        >
+                        <!-- Important pour que Netlify détecte ton formulaire -->
+                        <input type="hidden" name="form-name" value="reservation" />
+                    <!-- <form 
+                        id="reservationForm"
+                        class="reservation-form"
+                        name="reservation"
+                        action="https://formspree.io/f/mwpopgkd"
+                        method="POST"
+                        novalidate
+                    > -->
+                    <!-- Honeypot Formspree (optionnel) -->
+                    <!-- <input type="text" name="_gotcha" style="display:none"> -->
 
                     <!-- Redirection après envoi -->
                     <!-- <input type="hidden" name="_next" value="https://legoutlocal.netlify.app/merci.html"> -->

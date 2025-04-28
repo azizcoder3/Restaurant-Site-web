@@ -186,47 +186,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Soumission via Formspree ---
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('reservationForm');
+        if (!form) return;
     
-        const isValid = validateForm();
-        if (!isValid) {
-            const firstError = form.querySelector('.error, .error-field');
-            if (firstError) {
-                firstError.focus();
-                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        form.addEventListener('submit', (event) => {
+            const isValid = validateForm();
+            if (!isValid) {
+                event.preventDefault(); // Bloquer seulement en cas d'erreur
+                const firstError = form.querySelector('.error, .error-field');
+                if (firstError) {
+                    firstError.focus();
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
-            return;
-        }
-    
-        const formData = new FormData(form);
-    
-        // Nettoyage : supprimer les champs inutiles
-        formData.delete('_gotcha');
-        formData.delete('_next');
-    
-        // Ajouter date et heure combinées
-        formData.append('date', `${dayInput.value.padStart(2, '0')}/${monthInput.value.padStart(2, '0')}/${yearInput.value}`);
-        formData.append('time', `${hourInput.value.padStart(2, '0')}:${minuteInput.value.padStart(2, '0')} ${ampmSelect.value}`);
-    
-        try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: new URLSearchParams(formData),
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            });
-    
-            if (response.ok) {
-                form.reset(); // ✅ Vider le formulaire
-                window.location.href = 'https://legoutlocal.netlify.app/merci.html';
-            } else {
-                throw new Error('Erreur statut ' + response.status);
-            }
-        } catch (error) {
-            console.error('Erreur Formspree:', error);
-            alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
-        }
+            // Sinon : PAS de preventDefault -> Netlify récupère l'envoi
+        });
     });
+    
+    // form.addEventListener('submit', async (event) => {
+    //     event.preventDefault();
+    
+    //     const isValid = validateForm();
+    //     if (!isValid) {
+    //         const firstError = form.querySelector('.error, .error-field');
+    //         if (firstError) {
+    //             firstError.focus();
+    //             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    //         }
+    //         return;
+    //     }
+    
+    //     const formData = new FormData(form);
+    
+    //     // Nettoyage : supprimer les champs inutiles
+    //     formData.delete('_gotcha');
+    //     formData.delete('_next');
+    
+    //     // Ajouter date et heure combinées
+    //     formData.append('date', `${dayInput.value.padStart(2, '0')}/${monthInput.value.padStart(2, '0')}/${yearInput.value}`);
+    //     formData.append('time', `${hourInput.value.padStart(2, '0')}:${minuteInput.value.padStart(2, '0')} ${ampmSelect.value}`);
+    
+    //     try {
+    //         const response = await fetch(form.action, {
+    //             method: form.method,
+    //             body: new URLSearchParams(formData),
+    //             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    //         });
+    
+    //         if (response.ok) {
+    //             form.reset(); // ✅ Vider le formulaire
+    //             window.location.href = 'https://legoutlocal.netlify.app/merci.html';
+    //         } else {
+    //             throw new Error('Erreur statut ' + response.status);
+    //         }
+    //     } catch (error) {
+    //         console.error('Erreur Formspree:', error);
+    //         alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
+    //     }
+    // });
     
     
 

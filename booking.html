@@ -41,29 +41,17 @@
 
                 <!-- <form id="reservationForm" class="reservation-form" novalidate> -->
                 <form 
-                    id="reservationForm" 
-                    class="reservation-form"
-                    name="reservation" 
+                    id="reservationForm"
+                    name="reservation"
+                    action="https://formspree.io/f/mwpopgkd"
                     method="POST"
-                    data-netlify="true"
-                    data-netlify-honeypot="bot-field"
                     novalidate
                   >
-                  <!-- Champ technique Netlify -->
-                    <input type="hidden" name="form-name" value="reservation">
+                  <!-- Honeypot Formspree (optionnel) -->
+                    <input type="text" name="_gotcha" style="display:none">
 
-                    <!-- Champ anti-spam caché / Honeypot principal -->
-                    <input type="hidden" name="form-name" value="reservation">
-                    <div class="form-hidden">
-                      <label>Laissez ce champ vide : <input name="bot-field"></label>
-                    </div>
-
-                    <!-- Deuxième piège à spam invisible / Honeypot secondaire  -->
-                    <input type="text" 
-                    name="website" 
-                    class="form-hidden"
-                    tabindex="-1"
-                    aria-hidden="true">
+                    <!-- Redirection après envoi -->
+                    <input type="hidden" name="_next" value="/merci.html">
 
                     <div class="form-group">
                         <label for="name" class="visually-hidden">Nom</label>

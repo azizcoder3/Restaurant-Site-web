@@ -187,7 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Soumission via Formspree ---
     form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Bloquer l'envoi par défaut
+        event.preventDefault();
+    
         const isValid = validateForm();
         if (!isValid) {
             const firstError = form.querySelector('.error, .error-field');
@@ -199,22 +200,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         const formData = new FormData(form);
+    
+        // Nettoyage : supprimer les champs inutiles
+        formData.delete('_gotcha');
+        formData.delete('_next');
+    
+        // Ajouter date et heure combinées
+        formData.append('date', `${dayInput.value.padStart(2, '0')}/${monthInput.value.padStart(2, '0')}/${yearInput.value}`);
+        formData.append('time', `${hourInput.value.padStart(2, '0')}:${minuteInput.value.padStart(2, '0')} ${ampmSelect.value}`);
+    
         try {
             const response = await fetch(form.action, {
                 method: form.method,
-                body: formData
+                body: new URLSearchParams(formData),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
     
             if (response.ok) {
-                window.location.href = '/merci.html'; // ✅ Redirige toi-même
+                form.reset(); // ✅ Vider le formulaire
+                window.location.href = 'https://legoutlocal.netlify.app/merci.html';
             } else {
-                throw new Error('Erreur HTTP ' + response.status);
+                throw new Error('Erreur statut ' + response.status);
             }
         } catch (error) {
-            console.error('Erreur lors de l\'envoi du formulaire:', error);
-            alert('Erreur. Essayez plus tard.');
+            console.error('Erreur Formspree:', error);
+            alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
         }
     });
+    
     
 
         // --- Soumission via Formspree ---

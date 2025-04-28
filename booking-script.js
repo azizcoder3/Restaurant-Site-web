@@ -219,4 +219,25 @@ document.addEventListener('DOMContentLoaded', () => {
 //             alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
 //         }
 //     });
+
+        // --- Soumission via Formspree ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('reservationForm');
+
+            form.addEventListener('submit', (event) => {
+                const isValid = validateForm();
+                if (!isValid) {
+                    event.preventDefault(); // On bloque l'envoi uniquement si le formulaire est invalide
+
+                    const firstError = form.querySelector('.error, .error-field');
+                    if (firstError) {
+                        firstError.focus();
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+                // Sinon, PAS de preventDefault
+                // Le formulaire continue vers Formspree naturellement
+            });
+        });
+
  });

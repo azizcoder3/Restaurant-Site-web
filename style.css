@@ -1110,7 +1110,7 @@
   }
 
   /* invisibilité totale tout en restant accessible aux robots spammeurs. */
-.form-hidden {
+/* .form-hidden {
   display: none !important;
   height: 0;
   width: 0;
@@ -1119,7 +1119,7 @@
   left: -9999px;
   pointer-events: none;
 }
-
+ */
   .booking-pattern-bas{
     position: absolute;
     right: 28%;
@@ -1360,3 +1360,80 @@
   }
 
 } /* Fin du @layer booking-page */
+
+/* =========================================
+   Mise en page de base de la page thank-you
+   ========================================= */
+
+   @layer thank-you {
+    .thank-you-page {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding-inline: 2rem; /* Ajoute un peu d'espace sur les côtés pour mobile */
+    }
+  
+    .thank-you {
+      max-width: 800px; /* Limite la largeur pour que ce ne soit pas TROP large */
+      width: 100%;
+      
+      h1 {
+        font-size: var(--font-size-h1);
+        font-weight: 500;
+        margin-block-end: 2rem;
+        margin-inline: auto;
+      }
+  
+      .heart {
+        width: 2rem;
+        height: 2rem;
+        fill: var(--c-brown);
+        vertical-align: middle;
+      }
+      
+      > .button {
+        margin-block-start: 2rem;
+        margin-inline: auto;
+      }
+  
+      p {
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: 699px) {
+      .logo{
+        top: 115px;
+      }
+
+      .thank-you p:nth-of-type(1){
+        max-width: 20ch;
+        margin-block-end: 10px;
+      }
+
+      .button{
+        white-space: nowrap;
+      }
+    }
+  
+    @media screen and (min-width: 700px) {
+      .thank-you-page {
+        padding-inline: 4rem; /* Plus d'espace sur tablette et desktop */
+      }
+      .thank-you {
+        max-width: 900px; /* Un peu plus large sur grand écran */
+      }
+
+      .logo{
+        top: 200px;
+      }
+    }
+
+    @media screen and (min-width: 1100px){
+      .logo{
+        top: 60px;
+      }
+    }
+  }
+  

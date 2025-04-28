@@ -186,37 +186,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Soumission via Formspree ---
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const isValid = validateForm();
-        if (!isValid) {
-            const firstError = form.querySelector('.error, .error-field');
-            if (firstError) {
-                firstError.focus();
-                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            return;
-        }
+//     form.addEventListener('submit', async (event) => {
+//         event.preventDefault();
+//         const isValid = validateForm();
+//         if (!isValid) {
+//             const firstError = form.querySelector('.error, .error-field');
+//             if (firstError) {
+//                 firstError.focus();
+//                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//             }
+//             return;
+//         }
 
-        const formData = new FormData(form);
-        formData.append('date', `${dayInput.value.padStart(2, '0')}/${monthInput.value.padStart(2, '0')}/${yearInput.value}`);
-        formData.append('time', `${hourInput.value.padStart(2, '0')}:${minuteInput.value.padStart(2, '0')} ${ampmSelect.value}`);
+//         const formData = new FormData(form);
+//         formData.append('date', `${dayInput.value.padStart(2, '0')}/${monthInput.value.padStart(2, '0')}/${yearInput.value}`);
+//         formData.append('time', `${hourInput.value.padStart(2, '0')}:${minuteInput.value.padStart(2, '0')} ${ampmSelect.value}`);
 
-        try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: new URLSearchParams(formData),
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            });
+//         try {
+//             const response = await fetch(form.action, {
+//                 method: form.method,
+//                 body: new URLSearchParams(formData),
+//                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+//             });
 
-            if (response.ok) {
-                window.location.href = '/merci.html';
-            } else {
-                throw new Error('Statut ' + response.status);
-            }
-        } catch (error) {
-            console.error('Erreur Formspree:', error);
-            alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
-        }
-    });
-});
+//             if (response.ok) {
+//                 window.location.href = '/merci.html';
+//             } else {
+//                 throw new Error('Statut ' + response.status);
+//             }
+//         } catch (error) {
+//             console.error('Erreur Formspree:', error);
+//             alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
+//         }
+//     });
+ });

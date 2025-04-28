@@ -186,58 +186,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Soumission via Formspree ---
-//     form.addEventListener('submit', async (event) => {
-//         event.preventDefault();
-//         const isValid = validateForm();
-//         if (!isValid) {
-//             const firstError = form.querySelector('.error, .error-field');
-//             if (firstError) {
-//                 firstError.focus();
-//                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-//             }
-//             return;
-//         }
-
-//         const formData = new FormData(form);
-//         formData.append('date', `${dayInput.value.padStart(2, '0')}/${monthInput.value.padStart(2, '0')}/${yearInput.value}`);
-//         formData.append('time', `${hourInput.value.padStart(2, '0')}:${minuteInput.value.padStart(2, '0')} ${ampmSelect.value}`);
-
-//         try {
-//             const response = await fetch(form.action, {
-//                 method: form.method,
-//                 body: new URLSearchParams(formData),
-//                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-//             });
-
-//             if (response.ok) {
-//                 window.location.href = '/merci.html';
-//             } else {
-//                 throw new Error('Statut ' + response.status);
-//             }
-//         } catch (error) {
-//             console.error('Erreur Formspree:', error);
-//             alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
-//         }
-//     });
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Bloquer l'envoi par défaut
+        const isValid = validateForm();
+        if (!isValid) {
+            const firstError = form.querySelector('.error, .error-field');
+            if (firstError) {
+                firstError.focus();
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
+    
+        const formData = new FormData(form);
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
+            });
+    
+            if (response.ok) {
+                window.location.href = '/merci.html'; // ✅ Redirige toi-même
+            } else {
+                throw new Error('Erreur HTTP ' + response.status);
+            }
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi du formulaire:', error);
+            alert('Erreur. Essayez plus tard.');
+        }
+    });
+    
 
         // --- Soumission via Formspree ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('reservationForm');
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const form = document.getElementById('reservationForm');
 
-            form.addEventListener('submit', (event) => {
-                const isValid = validateForm();
-                if (!isValid) {
-                    event.preventDefault(); // On bloque l'envoi uniquement si le formulaire est invalide
+        //     form.addEventListener('submit', (event) => {
+        //         const isValid = validateForm();
+        //         if (!isValid) {
+        //             event.preventDefault(); // On bloque l'envoi uniquement si le formulaire est invalide
 
-                    const firstError = form.querySelector('.error, .error-field');
-                    if (firstError) {
-                        firstError.focus();
-                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }
-                // Sinon, PAS de preventDefault
-                // Le formulaire continue vers Formspree naturellement
-            });
-        });
+        //             const firstError = form.querySelector('.error, .error-field');
+        //             if (firstError) {
+        //                 firstError.focus();
+        //                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        //             }
+        //         }
+        //         // Sinon, PAS de preventDefault
+        //         // Le formulaire continue vers Formspree naturellement
+        //     });
+        // });
 
  });

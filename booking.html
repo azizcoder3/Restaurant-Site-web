@@ -51,6 +51,11 @@
                         >
                         <!-- Important pour que Netlify détecte ton formulaire -->
                         <input type="hidden" name="form-name" value="reservation" />
+                        
+                        <!-- Honeypot anti-spam pour Netlify -->
+                        <input type="hidden" name="form-name" value="reservation" />
+                        <input type="text" name="name" placeholder="Nom" required />
+                        <input type="email" name="email" placeholder="Email" required />
                     <!-- <form 
                         id="reservationForm"
                         class="reservation-form"

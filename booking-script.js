@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reservationForm');
-    // Si le formulaire n'existe pas sur la page, on arrête.
     if (!form) {
         console.log("Formulaire de réservation non trouvé sur cette page.");
         return;
     }
 
-    // Récupération des éléments du formulaire
+    // Champs du formulaire
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
     const monthInput = document.getElementById('month');
@@ -22,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const peopleDisplaySpan = document.getElementById('peopleCountDisplay');
     const peopleHiddenInput = document.getElementById('people');
 
-    // --- Logique du Compteur de Personnes ---
+    // --- Compteur de personnes ---
     let currentPeople = parseInt(peopleHiddenInput.value, 10) || 4;
     function updatePeopleDisplay() {
         peopleCountValueSpan.textContent = currentPeople;
@@ -38,17 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     increaseBtn.addEventListener('click', () => {
-        // Limite maximale facultative, par ex. 12
-        // if (currentPeople < 12) {
-            currentPeople++;
-            updatePeopleDisplay();
-        // }
+        currentPeople++;
+        updatePeopleDisplay();
     });
 
-    // Initialiser l'affichage au chargement
     updatePeopleDisplay();
 
-    // --- Auto-Tab entre champs date/heure ---
+    // --- Auto-Tabulation entre champs date/heure ---
     function setupAutoTab(currentInput, nextInput, maxLength) {
         currentInput.addEventListener('input', () => {
             if (currentInput.value.length >= maxLength && nextInput) {
@@ -95,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Validation du formulaire ---
+    // --- Validation ---
     function isValidEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
@@ -155,117 +150,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const dateFields = [monthInput, dayInput, yearInput];
-        let dateIncomplete = false;
-        dateFields.forEach(f => {
-            if (!f.value.trim()) {
-                dateIncomplete = true;
-                f.classList.add('error-field');
-            }
-        });
+        let dateIncomplete = dateFields.some(f => !f.value.trim());
         if (dateIncomplete) {
             const dateGroup = monthInput.closest('.form-group');
             showGroupError(dateGroup, 'Ce champ est incomplet');
+            dateFields.forEach(f => f.classList.add('error-field'));
             valid = false;
         }
 
         const timeFields = [hourInput, minuteInput, ampmSelect];
-        let timeIncomplete = false;
-        timeFields.forEach(f => {
-            if (!f.value || f.value.trim() === '') {
-                timeIncomplete = true;
-                f.classList.add('error-field');
-            }
-        });
+        let timeIncomplete = timeFields.some(f => !f.value || f.value.trim() === '');
         if (timeIncomplete) {
             const timeGroup = hourInput.closest('.form-group');
             showGroupError(timeGroup, 'Ce champ est incomplet');
+            timeFields.forEach(f => f.classList.add('error-field'));
             valid = false;
         }
 
         return valid;
     }
 
-    // --- Soumission via Formspree ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('reservationForm');
-        if (!form) return;
-    
-        form.addEventListener('submit', (event) => {
-            const isValid = validateForm();
-            if (!isValid) {
-                event.preventDefault(); // Bloquer seulement en cas d'erreur
-                const firstError = form.querySelector('.error, .error-field');
-                if (firstError) {
-                    firstError.focus();
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+    // --- Soumission du formulaire ---
+    form.addEventListener('submit', (event) => {
+        const isValid = validateForm();
+        if (!isValid) {
+            event.preventDefault(); // Bloque l'envoi uniquement si erreur
+            const firstError = form.querySelector('.error, .error-field');
+            if (firstError) {
+                firstError.focus();
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-            // Sinon : PAS de preventDefault -> Netlify récupère l'envoi
-        });
+        } else {
+            // ✅ Si valide, on laisse Netlify traiter, ET on reset pour être propre
+            form.reset();
+            updatePeopleDisplay(); // Remet le compteur de personnes à jour
+        }
     });
-    
-    // form.addEventListener('submit', async (event) => {
-    //     event.preventDefault();
-    
-    //     const isValid = validateForm();
-    //     if (!isValid) {
-    //         const firstError = form.querySelector('.error, .error-field');
-    //         if (firstError) {
-    //             firstError.focus();
-    //             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    //         }
-    //         return;
-    //     }
-    
-    //     const formData = new FormData(form);
-    
-    //     // Nettoyage : supprimer les champs inutiles
-    //     formData.delete('_gotcha');
-    //     formData.delete('_next');
-    
-    //     // Ajouter date et heure combinées
-    //     formData.append('date', `${dayInput.value.padStart(2, '0')}/${monthInput.value.padStart(2, '0')}/${yearInput.value}`);
-    //     formData.append('time', `${hourInput.value.padStart(2, '0')}:${minuteInput.value.padStart(2, '0')} ${ampmSelect.value}`);
-    
-    //     try {
-    //         const response = await fetch(form.action, {
-    //             method: form.method,
-    //             body: new URLSearchParams(formData),
-    //             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    //         });
-    
-    //         if (response.ok) {
-    //             form.reset(); // ✅ Vider le formulaire
-    //             window.location.href = 'https://legoutlocal.netlify.app/merci.html';
-    //         } else {
-    //             throw new Error('Erreur statut ' + response.status);
-    //         }
-    //     } catch (error) {
-    //         console.error('Erreur Formspree:', error);
-    //         alert("Une erreur est survenue. Veuillez réessayer plus tard ou nous appeler.");
-    //     }
-    // });
-    
-    
-
-        // --- Soumission via Formspree ---
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     const form = document.getElementById('reservationForm');
-
-        //     form.addEventListener('submit', (event) => {
-        //         const isValid = validateForm();
-        //         if (!isValid) {
-        //             event.preventDefault(); // On bloque l'envoi uniquement si le formulaire est invalide
-
-        //             const firstError = form.querySelector('.error, .error-field');
-        //             if (firstError) {
-        //                 firstError.focus();
-        //                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        //             }
-        //         }
-        //         // Sinon, PAS de preventDefault
-        //         // Le formulaire continue vers Formspree naturellement
-        //     });
-        // });
-
- });
+});

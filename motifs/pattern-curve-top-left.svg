@@ -1,0 +1,7 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 895 320" width="895" height="320">
+	<title>pattern-curve-top-right</title>
+	<style>
+		.s0 { opacity: .08;fill: #5c6779 } 
+	</style>
+	<path fill-rule="evenodd" class="s0" d="m100 0h795v320h-895v-220c0-55.2 44.8-100 100-100z"/>
+</svg>

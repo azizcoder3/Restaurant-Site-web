@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Assure-toi que ce chemin est correct pour ton projet -->
+    <link rel="stylesheet" href="style.css">
+    <title>Diner | Réservation</title>
+    <!-- Script spécifique pour la page de réservation -->
+    <script src="booking-script.js" defer></script>
+</head>
+<body>
+    <!-- Utilise le même header que index.html ou adapte si nécessaire -->
+    <header class="wrapper header booking-header">
+        <h2 class="visually-hidden">Header</h2>
+        <!-- Logo standard (sombre) peut être mieux ici -->
+        <a href="/"><img class="logo" src="/fonts/logo-dine-white.png" alt="logo diner" width="105px" height="40px"></a>
+    </header>
+
+    <main>
+        <!-- ========================== -->
+        <!-- Section Hero Réservation   -->
+        <!-- ========================== -->
+        <section class="wrapper hero booking-hero">
+            <!-- Élément pour l'image de fond et l'overlay via CSS -->
+            <div class="booking-hero-background fullbleed"></div>
+
+            <!-- Contenu texte du Hero -->
+            <div class="booking-intro-text">
+                <h1 class="title">Réservations</h1>
+                <p class="description">Nous avons hâte de vous accueillir. Si vous avez des exigences particulières, n'hésitez pas à nous appeler au numéro de téléphone ci-dessous. Nous serons heureux de vous conseiller.</p>
+            </div>
+        </section>
+
+        <!-- ========================== -->
+        <!-- Section Formulaire         -->
+        <!-- ========================== -->
+        <section class="wrapper booking-form-section">
+            <!-- Conteneur principal du formulaire (fond blanc, ombre, etc.) -->
+            <div class="booking-form-container">
+
+                <!-- <form id="reservationForm" class="reservation-form" novalidate> -->
+                <form 
+                    id="reservationForm" 
+                    class="reservation-form"
+                    name="reservation" 
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    novalidate
+                  >
+                  <!-- Champ technique Netlify -->
+                    <input type="hidden" name="form-name" value="reservation">
+
+                    <!-- Champ anti-spam caché / Honeypot principal -->
+                    <input type="hidden" name="form-name" value="reservation">
+                    <div class="form-hidden">
+                      <label>Laissez ce champ vide : <input name="bot-field"></label>
+                    </div>
+
+                    <!-- Deuxième piège à spam invisible / Honeypot secondaire  -->
+                    <input type="text" 
+                    name="website" 
+                    class="form-hidden"
+                    tabindex="-1"
+                    aria-hidden="true">
+
+                    <div class="form-group">
+                        <label for="name" class="visually-hidden">Nom</label>
+                        <input type="text" id="name" name="name" placeholder="Nom" required aria-label="Nom">
+                        <span class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="visually-hidden">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email" required aria-label="Email">
+                        <span class="error-message" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group form-group-date-time date-group">
+                        <label id="date-label" class="date-time-label">Choisissez une date</label>
+                        <div class="date-inputs">
+                            <input type="text" id="day" name="day" placeholder="JJ" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="date-label" aria-label="Jour">
+                            <input type="text" id="month" name="month" placeholder="MM" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="date-label" aria-label="Mois">
+                            <input type="text" id="year" name="year" placeholder="AAAA" maxlength="4" pattern="\d*" inputmode="numeric" required aria-labelledby="date-label" aria-label="Année">
+                        </div>
+                         <span class="error-message error-message-date-time" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group form-group-date-time time-group">
+                         <label id="time-label" class="date-time-label">Choisissez une heure</label>
+                        <div class="time-inputs">
+                            <input type="text" id="hour" name="hour" placeholder="09" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="time-label" aria-label="Heure">
+                            <input type="text" id="minute" name="minute" placeholder="00" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="time-label" aria-label="Minute">
+                            <select id="ampm" name="ampm" required aria-labelledby="time-label" aria-label="AM/PM">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                        <span class="error-message error-message-date-time" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group people-counter">
+                        <button type="button" id="decreasePeople" aria-label="Diminuer le nombre de personnes">-</button>
+                        <span id="peopleCountDisplay"><span id="peopleCountValue">4</span> personnes</span>
+                        <input type="hidden" id="people" name="people" value="4">
+                        <button type="button" id="increasePeople" aria-label="Augmenter le nombre de personnes">+</button>
+                    </div>
+
+                    <button type="submit" class="button solid submit-reservation">Faire une réservation</button>
+                </form>
+            </div>
+            <img class="booking-pattern-bas hide-on-mobile" src="/motifs/pattern-curve-top-left-bas.svg" alt="" width="895px" height="320px">
+            <!-- Lignes décoratives positionnées par rapport à ce conteneur -->
+            <img class="booking-line" src="/motifs/pattern-lines.svg" alt="">
+        </section>
+
+    </main>
+
+    <!-- Réutilise ton footer existant -->
+    <footer class="wrapper footer bg-dark">
+        <h2 class="visually-hidden">Footer</h2>
+        <div class="footer-content">
+            <a class="footer-link" href="/"><img class="logo" src="/fonts/logo-dine-white.png" alt="logo diner" width="105px" height="40px"></a>
+            <div class="footer-location">
+                 <p>MARTHWAITE, SEDBERGH</p>
+                 <p>CUMBRIA</p>
+                 <a href="tel:+00441234567">+00 44 123 4567</a>
+            </div>
+            <div class="footer-times">
+                <p>OPEN TIMES</p>
+                <p>MON - FRI: 09:00 AM - 10:00 PM</p>
+                <p>SAT - SUN: 09:00 AM - 11:00 PM</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

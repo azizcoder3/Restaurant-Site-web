@@ -1,0 +1,1362 @@
+@layer fonts{
+    /* league-spartan-300 - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'League Spartan';
+    font-style: normal;
+    font-weight: 300;
+    src: url('/fonts/league-spartan-v11-latin-300.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* league-spartan-regular - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'League Spartan';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/league-spartan-v11-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* league-spartan-600 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'League Spartan';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/fonts/league-spartan-v11-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* league-spartan-700 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'League Spartan';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/league-spartan-v11-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+}
+
+@layer colors{
+    :root{
+        --c-brown: hsl(27, 22%, 51%);
+        --c-black: hsl(0, 0%, 7%);
+        --c-black-hero: hsl(0, 0%, 0%);
+        --c-white: hsl(0, 0%, 100%);
+        --c-grey-100: hsl(234, 30%, 13%);
+        --c-grey-300: hsl(218, 21%, 18%);
+        --c-grey-400: hsl(0, 0%, 30%);
+        --c-grey-450: hsla(0, 0%, 30%, 0.5);
+        --c-grey-500: hsl(217, 14%, 42%);
+        --c-grey-700: hsla(0, 0%, 100%, 0.15);
+        --c-grey-bg: hsl(0, 0%, 7%);
+        --c-form-border: hsl(0, 0%, 85%);
+        --c-error: hsl(0, 100%, 66%);
+        --color-background-dark: var(--c-black);
+        --color-hero-bg: hsl(0, 0%, 7%);
+        --color-bg-hero: var(--c-black-hero);
+        --color-background-light: var(--c-white);
+        --color-text-light: var(--c-white);
+        --color-text-dark: var(--c-black);
+        --color-text-dark: var(--c-grey-300);
+        --color-shadow: hsla(234, 30%, 13%, 0.5);
+        --color-divider-menu: var(--c-grey-700);
+        --color-image-divider: var(--c-brown);
+        --color-tab-active: var(--c-grey-400);
+        --color-tab-inactive: var(--c-grey-450);
+        --color-tab-line: var(--c-brown);
+
+    }
+}
+
+@layer typography{
+    :root {
+        --fs-80: 5rem;
+        --fs-48: 3rem;
+        --fs-32: 2rem;
+        --fs-20: 1.25rem;
+        --fs-17: 1.1rem;
+        --fs-16: 1rem;
+        --fs-14: 0.875rem;
+
+      
+        /* Taille par défaut pour mobile */
+        --font-size-h1: var(--fs-32);
+        --font-size-h2: var(--fs-32);
+        --font-size-h3: var(--fs-20);
+        --font-size-p: var(--fs-16);
+        --font-size-tab: var(--fs-17);
+        --font-size-footer: var(--fs-14);
+
+        --font-size-p-small: var(--fs-16);
+        --font-size-tab: var(--fs-17);
+        --font-size-booking-h3: var(--fs-32);
+      }
+      
+      /* Taille h1 pour les écrans >= 700px */
+      @media screen and (min-width: 700px) {
+        :root {
+          --font-size-h1: var(--fs-48);
+          --font-size-h2: var(--fs-48);
+          --font-size-booking-h3: var(--fs-48);
+          --font-size-p: var(--fs-20);
+        }
+      }
+      
+      /* Taille h1 pour les écrans >= 1110px */
+      @media screen and (min-width: 1100px) {
+        :root {
+          --font-size-h1: var(--fs-80);
+          --font-size-booking-h3: var(--fs-48);
+        }
+      }
+
+      h1, h2, h3, p{
+        text-align: center;
+
+        @media screen and (min-width: 1100px){
+            text-align: left;
+        }
+      }
+
+      h1, h2, h3{
+        margin: 0;
+    }
+      
+      h1{
+        font-size: var(--font-size-h1);
+        font-weight: 300;
+        letter-spacing: -0.0125em;
+        line-height: 1;
+      }
+      
+      h2{
+        font-size: var(--font-size-h2);
+        font-weight: 700;
+        letter-spacing: -0.0104em;
+        line-height: 1;
+      }
+
+      h3{
+        font-size: var(--fs-20);
+        letter-spacing: -0,0125;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      
+      p{
+        font-size: var(--font-size-p);
+        font-weight: 400;
+        line-height: 1.5;
+        margin: 0;
+
+        &.small{
+            font-size: var(--font-size-p-small);
+        }
+      }
+
+      a{
+        text-decoration: none;
+      }
+}
+
+@layer global{
+    *::after{
+        box-sizing: border-box;
+    }
+
+    body{
+        margin: 0;
+        background-color: var(--color-background-white);
+        color: var(--c-grey-300);
+        font-family: 'League Spartan', sans-serif;
+    }
+
+    button{
+      font-family: 'League Spartan', sans-serif;
+    }
+
+    img{
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    @media screen and (max-width: 700px){
+      .hide-on-mobile{
+        display: none;
+      }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      left:     -10000px;
+      top:      auto;
+      width:    1px;
+      height:   1px;
+      overflow: hidden;
+    }
+
+    .has-shadow{
+        box-shadow: 0 75px 100px -50px var(--color-shadow);
+    }
+
+    .bg-dark{
+        background-color: var(--color-background-dark);
+        color: var(--color-text-light);
+    }
+}
+
+@layer layout{
+    .wrapper{
+        display: grid;
+        grid-template-columns: 24px 1fr 24px;
+
+        > *{
+            grid-column: 2;/*Tous les enfants directs de .wrapper doivent être placés dans la colonne 2 de la grille */
+        }
+
+        > .fullbleed{
+            grid-column: 1 / -1;
+        }
+
+        @media screen and (min-width: 700px){
+            grid-template-columns: 1fr min(100% - 80px, 1110px) 1fr;
+            /* grid-template-columns: 40px 1fr 40px; */
+            
+        }
+
+        /* @media screen and (min-width: 1100px){
+            grid-template-columns: 1fr min(100% - 80px, 1110px) 1fr;
+        } */
+    }
+}
+
+@layer header {
+  .header{
+    .logo{
+      position: absolute;
+      top: 65px;
+      z-index: 3;
+      
+  }
+
+  @media screen and (max-width: 1100px) {
+      .logo{
+          top: 375px;
+          left: 50%;
+          transform: translateX(-50%);
+      }
+  }
+
+  @media screen and (max-width: 699px) {
+    .logo {
+      margin-inline: auto;
+      width: 5.025rem;
+      height: 2rem;
+      top: 232px;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .logo {
+      margin-inline: 0;
+  }
+  }
+  }
+}
+
+@layer button {
+  .button {
+    display:inline-block;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    letter-spacing: 0.16em;
+    border: 1px solid var(--color-text-light);
+    width: fit-content;
+    padding: 24px 40px;
+    transition: 250ms ease-in-out;
+    transition-property: background-color, color;
+    margin-inline: auto;
+
+    @media screen and (min-width: 1100px){
+        margin-inline: 0;
+    }
+
+
+    &:hover {
+        background-color: var(--color-text-light);
+        color: var(--color-background-dark);
+      }
+
+    &.solid{
+      background-color: var(--color-background-dark);
+      color: var(--color-text-light);
+      border: 1px solid var(--color-background-dark);
+
+    &:hover{
+        background-color: var(--color-background-light);
+        color: var(--color-text-dark);
+      }
+    }
+  }
+}
+
+@layer hero{
+    .hero{
+        display: grid;
+        grid-template-rows: 300px repeat(4, auto);
+        justify-items: center;
+        background-color: var(--color-background-dark);
+        color: var(--color-text-light);
+        min-height: none;
+
+        
+
+        @media screen and (min-width: 700px){
+            grid-template-rows: 452px repeat(4, auto);
+            padding-block-end: 87px;
+        }
+
+        @media screen and (min-width: 1100px){
+            grid-template-rows: 258px repeat(4, auto);
+            justify-items: start;
+            padding-block-end: 200px;
+            max-height: 652px;
+            overflow:hidden;
+        }
+
+        .image{
+          grid-row: 1 / -1;
+
+          img{
+            
+            @media screen and (max-width: 1100px){
+              width: 700px;     
+            }
+
+            @media screen and (max-width: 700px){
+              width: 375px;
+            } 
+            
+            @media screen and (min-width: 1100px){
+              min-height: 851px;
+              object-fit: cover;
+            }
+          }            
+        }
+
+        .title{
+            margin-block-end: 20px;
+            line-height: 1.25;
+            grid-row: 2;
+            max-width: 15ch;
+
+            @media screen and (min-width: 700px){
+                line-height: 1.35;
+            }
+
+            @media screen and (min-width: 1100px){
+                line-height: 1;
+            }
+        }
+
+   .description{
+        margin-block-end: 50px;
+        grid-row: 3;
+        max-width: 50ch;
+
+        @media screen and (min-width: 1100px){
+            max-width: 40ch;
+        }
+    }
+
+    .button{
+            grid-row: 4;
+        }
+    }
+}
+
+@layer features{
+  .features{
+    position: relative;
+    margin-top: -72px;
+    overflow-x: clip;
+
+    @media screen and (min-width: 1100px) {
+      .feature:nth-child(2) picture {
+        order: 2;
+        margin-block-end: -230px;  
+      }
+    }
+
+    .feature{
+      display: grid;
+      justify-items: center;
+      padding-block-end: 100px;
+      position: relative;
+
+      @media screen and (min-width: 1100px){
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        column-gap: 125px;
+        
+
+    }
+
+    &:nth-child(2) .feature-pattern {
+      top: auto;
+      bottom: -29px;
+      right: auto;
+      left: 50%;
+
+      @media screen and (min-width: 1100px) {
+        top: 144px;
+        right: auto;
+        bottom: auto;
+        left: 38%;
+        transform: translateY(55%);
+      }
+    }
+
+    .feature-pattern{
+      position: absolute;
+      max-width: none;
+      top: 320px;
+      right: 42%;
+    }
+
+    .feature_image{
+      margin-block-end: 48px;
+
+      @media screen and (min-width: 700px){
+        max-width: 573px;
+    }
+
+      @media screen and (min-width: 1100px){
+        max-width: 540px;
+    }
+
+  }
+
+    .feature_lines{
+      position: absolute;
+      top: 258px;
+      left: 75%;
+    }
+
+    @media screen and (min-width: 1100px) {
+      .feature_lines {
+        left: 90%;
+        transform: translateX(40%);
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      .feature_lines {
+        display: none;
+      }
+    }
+    
+
+    .feature-text{
+      @media screen and (max-width: 1100px){
+        display: grid;
+        justify-items: center;
+      }
+    }
+
+    .feature_divider{
+      margin-block-end: 36px;
+    }
+
+    .feature_title{
+      margin-block-end: 13px;
+      max-width: 17ch;
+    }
+
+    .feature_description{
+      max-width: 45ch;
+
+    }
+  }
+}
+} 
+
+@layer highlight{
+    .highlight{
+      padding-block: 72px;
+
+      @media screen and (min-width: 700px){
+        padding-block: 100px;
+      }
+
+      @media screen and (min-width: 1100px){
+        .highlight-content{
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          align-items: center;
+          gap: 80px;
+        }
+
+        .highlight-divider{
+          margin-inline-end: 445px;
+        }
+      }
+      
+
+      .highlight-text{
+        display: grid;
+        justify-items: center;
+
+        .highlight-divider{
+          padding-block-end: 36px;
+        }
+  
+        h2{
+          max-width: 20ch;
+          margin-block-end: 13px;
+
+          @media screen and (min-width: 700px){
+            margin-block-end: 27px;
+          }
+        }
+  
+        p{
+          max-width: 45ch;
+          margin-block-end: 85px;
+        }
+      }
+
+  
+      .highlight-items{
+        display: grid;
+        gap: 24px;
+
+        @media screen and (min-width: 1100px){
+          padding-block-start: 138px;
+        }
+      }
+  
+      .highlight-item{
+        position: relative;
+
+        @media screen and (min-width: 700px){
+          display: grid;
+          grid-template-columns: 160px 1fr;
+          gap: 64px;
+        }
+
+        @media screen and (min-width: 700px) {
+          .highline-description {
+            text-align: left;
+            justify-self: start;
+          }
+
+          .highline-description p{
+            font-size: 18px;
+            max-width: 40ch;
+          }
+          
+          /* Surcharge explicite pour les éléments h3 et p */
+          .highline-description h3,
+          .highline-description p {
+            text-align: left;
+            margin-inline: 0;
+          }
+        }
+
+        &:not(:last-child){
+          padding-block-end: 56px;
+          border-block-end: 2px solid var(--color-divider-menu);
+
+          @media screen and (min-width: 700px){
+            padding-block-end: 24px;
+          }
+        }
+
+        p{
+          max-width: 28ch;
+          margin-inline: auto;
+        }
+
+      }
+  
+      .highlight-item-image{
+        @media screen and (max-width: 700px){
+          img{
+            margin-block-end: 36px;
+          }
+        }
+      }
+
+      .highline-item-divider{
+        display: none;
+      }
+
+      @media screen and (min-width: 700px){
+        .highlight-item-divider{
+          width: 32px;
+          height: 1px;
+          background: var(--color-image-divider);
+          position: absolute;
+          top: 12px;
+          left: 186px;
+          transform: translateX(-80%);
+        }
+
+        
+        @media screen and (min-width: 1100px){
+          .highlight-item-divider{
+            left: 160px;
+            transform: none;
+          }
+        }
+      }
+
+      h3{
+        max-width: 20ch;
+        font-size: 22px;
+        grid-area: headline;
+        margin: 0 auto;
+        padding-bottom: 10px;
+
+      }
+
+    }
+}
+
+@layer booking{
+  .booking{
+    position: relative;
+    padding-block-start: 80px;
+    padding-block-end: 124px;
+    overflow-x: hidden;
+    
+
+    @media screen and (min-width: 700px){
+      padding-block: 120px;
+    }
+
+    @media screen and (min-width: 1100px){
+      padding-block: 160px;
+    }
+
+    .booking-pattern,
+    .booking-lines {
+      position: absolute;
+    }
+
+    .booking-pattern{
+      max-width: none;
+      right: 54%;
+
+      @media screen and (min-width: 1100px){
+        right: 75%;
+      }
+    }
+
+    .booking-lines{
+      top: 82px;
+      right: 72%;
+
+      @media screen and (min-width: 1100px){
+        top: 130px;
+        right: 93%;
+      }
+    }
+
+    .booking-tabs{
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+      
+      /* position basé sur l'image largeur rapport aspect */
+      top: calc((100vw - 48px) / 0.815 + 100px + 25px);
+
+      @media screen and (min-width: 700px){
+        grid-auto-flow: column;
+        /*grid-auto-columns: max-content; ← chaque colonne ne fait que la largeur de son contenu */
+        /*justify-content: center; si tu veux centrer tout le groupe */
+        top: 535px;
+      }
+
+      @media screen and (min-width: 1100px){
+        grid-auto-flow: row;
+        justify-items: start;
+        grid-column: 2;
+        gap: 0;
+        left: 665px;
+        top: auto;
+        bottom: 150px;
+
+      }
+
+      @media screen and (min-width: 1200px){
+        bottom: 220px;
+      }
+
+    }
+
+    .booking-tab{
+      background: none;
+      border: none;
+      font-size: var(--font-size-tab);
+      font-weight: 600;
+      line-height: 1.6;
+      letter-spacing: 0.147em;
+      text-transform: uppercase;
+      color: var(--color-tab-inactive);
+      transition: color 250ms ease-in-out;
+
+      &[aria-selected='true']{
+        color: var(--color-tab-active);
+
+        &::before{
+          opacity: 1;
+        }
+      }
+
+      &::before{
+        content: '';
+        display: block;
+        width: 48px;
+        height: 1px;
+        background: var(--color-tab-line);
+        opacity: 0;
+        position: relative;
+        top: 30px;
+        margin-inline: auto;
+
+        @media screen and (min-width: 700px){
+          top: 36px;
+        }
+
+        @media screen and (min-width: 1100px){
+          width: 95px;
+          top: 13px;
+          left: -32px;
+          margin: 0;
+          translate: -100px 0;
+        }
+      }
+    }
+
+    .booking-tabpanel{
+      position: relative;
+    }
+
+    .booking-content{
+      display: grid;
+      row-gap: 12.5rem;
+
+      @media screen and (min-width: 700px){
+        row-gap: 8.75rem;
+        justify-items: center;
+      }
+
+      @media screen and (min-width: 1100px){
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        column-gap: 125px;
+        
+        
+        /* grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+        column-gap: 125px; */
+      }
+    }
+
+    .booking-picture{
+
+    }
+
+    .booking-image{
+      @media screen and (min-width: 700px){
+        max-width: 35.813rem;
+      }
+
+      @media screen and (min-width: 1100px){
+        max-width: 33.75rem;
+      }
+    }
+
+    .booking-text{
+      display: grid;
+      /* justify-items: center; */
+
+      @media screen and (max-width: 1100px){
+       
+      }
+
+      @media screen and (min-width: 1100px){
+        padding-block-start: 45px;
+      }
+
+      h3{
+        font-size: var(--font-size-booking-h3);
+        margin-block-end: 13px;
+      }
+
+      p{ 
+        max-width: 33ch;
+        margin-block-end: 27px;
+        text-align: center;
+
+        @media screen and (min-width: 700px){
+          max-width: 48ch;
+          margin-block-end: 60px;
+        }
+
+        @media screen and (min-width: 1100px){
+          max-width: 40ch;
+          text-align: start;
+
+        }
+      }
+
+    }
+  }
+}
+
+@layer cta{
+  .cta{
+    position: relative;
+    min-height: 240px;
+    align-items: center;
+
+    @media screen and (max-width: 1100px){
+      place-items: center;
+    }
+
+    .cta-picture, .cta-text{
+      grid-row: 1;
+    }
+
+    .cta-picture{
+      position: relative;
+      height: 100%;
+      display: block;
+    }
+
+    .cta-image{
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cta-picture .overlay-cta{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1;
+    }
+
+    .cta-text{
+      position: relative;
+      display: grid;
+      gap: 1.25rem;
+      z-index: 2;
+
+      @media screen and (min-width: 700px){
+        gap: 1.5rem;
+      }
+
+      @media screen and (min-width: 1100px){
+        grid-template-columns: repeat(2, auto);
+        justify-items: start;
+        align-items: center;
+      }
+
+      .button{
+        @media screen and (min-width: 1100px){
+          justify-self: end;
+        }
+      }
+    }
+  }
+} 
+
+@layer footer{
+  .footer{
+    display: grid;
+    /* justify-items: center; */
+    padding-block: 80px;
+
+    @media screen and (max-width: 700px){
+      padding-block: 64px;
+    }
+    
+    @media screen and (max-width: 1100px){
+      padding-block: 80px;
+    }
+
+    .footer-content{
+      @media screen and (min-width: 700px){
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: 
+          'logo location'
+            '. times';
+      }
+
+      @media screen and (min-width: 1100px){
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 'logo location times';
+      }
+
+      > *{
+        @media screen and (min-width: 700px){
+          justify-self: start;
+        }
+      }
+
+    }
+
+    p,a{
+      font-size: var(--font-size-footer);
+      line-height: 2;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--color-text-light);
+
+      @media screen and (min-width: 700px){
+        text-align: left;
+      }
+    }
+
+    .footer-link{
+      
+    }
+
+    .logo{
+      margin-block-end: 42px;
+      grid-area: logo;
+
+      @media screen and (max-width: 700px){
+        margin-inline: auto;
+      }
+    }
+
+    a:hover{
+      text-decoration: underline;
+    }
+
+    .footer-location{
+      margin-block-end: 32px;
+      grid-area: location;
+
+      @media screen and (max-width: 700px){
+        text-align: center;
+      }
+    }
+
+    .footer-times{
+      grid-area: times;
+    }
+  }
+}
+
+/* =======================================
+   Mise en page de base de la page booking
+   ======================================= */
+/* --- Assure-toi que ces variables existent dans @layer colors --- */
+
+@layer colors{
+  :root{
+      /* ... tes autres couleurs ... */
+      --c-brown: hsl(27, 22%, 51%);
+      --c-black: hsl(0, 0%, 7%);
+      --c-white: hsl(0, 0%, 100%);
+      --c-grey-100: hsl(234, 30%, 13%);
+      --c-grey-300: hsl(218, 21%, 18%);
+      --c-grey-400: hsl(0, 0%, 30%); /* Utilise ça pour les bordures peut-être ? */
+      --c-grey-450: hsla(0, 0%, 30%, 0.5);
+      --c-grey-500: hsl(217, 14%, 42%); /* Ou ça */
+      --c-grey-700: hsla(0, 0%, 100%, 0.15);
+      --c-grey-bg: hsl(0, 0%, 7%);
+      --c-form-border: hsl(0, 0%, 85%); /* Nouvelle variable pour bordure input */
+      --c-error: hsl(0, 100%, 66%); /* Rouge pour les erreurs */
+      --color-background-dark: var(--c-black);
+      --color-hero-bg: hsl(0, 0%, 7%);
+      --color-background-light: var(--c-white);
+      --color-text-light: var(--c-white);
+      --color-text-dark: var(--c-grey-300);
+      --color-shadow: hsla(234, 30%, 13%, 0.5);
+      --color-divider-menu: var(--c-grey-700);
+      --color-image-divider: var(--c-brown);
+      --color-tab-active: var(--c-grey-400);
+      --color-tab-inactive: var(--c-grey-450);
+      --color-tab-line: var(--c-brown);
+
+  }
+}
+
+/* --- Calque spécifique pour la page de réservation --- */
+@layer booking-page {
+
+  /* Ajustement potentiel du header sur cette page */
+  .booking-header {
+    position: relative; /* Ou static */
+    z-index: 10; /* Assure qu'il est au-dessus du hero */
+
+    .logo {
+      top: 110px;
+
+      @media screen and (min-width: 700px) {
+        /* margin:0; */
+        margin-inline: auto; 
+        /* top: 65px; */
+      }
+
+      @media screen and (min-width: 700px) {
+        top: 65px;
+      }
+
+    }
+  }
+
+  /* --- Section Hero Réservation --- */
+  .booking-hero {
+      position: relative; /* Contexte pour l'arrière-plan absolu */
+      display: grid; /* Utilise le système de grille du wrapper */
+      align-content: center;  /*Centre le contenu verticalement */
+      min-height: 600px;  /*Hauteur minimale pour voir l'image */
+      padding-block: 100px 180px;  /*Espace haut/bas, PLUS d'espace en bas pour l'overlap */
+      color: var(--color-text-light);  /*Texte blanc */
+      overflow: hidden;  /*Empêche tout débordement non désiré */
+  }
+
+  .booking-hero-background {
+      position: absolute;
+      inset: 0; /* top:0; right:0; bottom:0; left:0; */
+      /* ** METS LE BON CHEMIN VERS TON IMAGE DE FOND ** */
+      background-image: url('/images/hero-bg-booking-bureau.jpg');
+      background-size: cover;
+      background-position: center center;
+      z-index: 0;  /*Derrière l'overlay et le contenu */
+  }
+
+  .booking-hero-background::before { /* Overlay sombre */
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.8); /* Ajuste l'opacité */
+      z-index: 1; /* Entre l'image et le contenu */
+  }
+
+  .booking-intro-text {
+    display: grid;
+    align-content: center;
+    grid-column: 2;
+    z-index: 2;
+  }
+  
+  .booking-intro-text > .title {
+    width: max-content;     /* évite la boîte pleine largeur */
+    justify-self: center;   /* centre la boîte dans la grille */
+    text-align: center;     /* centre le texte à l’intérieur */
+  }
+  
+  .booking-intro-text > .description {
+    max-width: 38ch;
+  }
+  
+  @media screen and (min-width: 1100px) {
+    .booking-intro-text > .title {
+      justify-self: start;
+      text-align: left;
+    }
+  }
+  
+
+  /* --- Section Formulaire --- */
+  .booking-form-section{
+    position: relative;
+    display: grid;
+    padding-block-end: 150px;
+
+    @media screen and (min-width: 1100px){
+      padding-block-end: 0;
+    }
+  }
+  
+
+  .booking-form-container {
+      display: grid;
+      grid-column: 2;  /*Centre le conteneur dans le wrapper */
+      position: relative; /* Contexte pour les lignes décoratives */
+      background-color: var(--color-background-light);
+      color: var(--color-text-dark);
+      padding: 40px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      max-width: 540px; /* Limite la largeur du formulaire */
+      margin-top: -110px;
+
+      @media screen and (min-width: 700px) and (max-width: 1099px){
+        width: 60%;
+        max-width: none;
+        margin-top: -300px;
+        margin-inline: auto;
+      } 
+      
+      @media screen and (min-width: 1100px){
+        top: -470px;
+        justify-self: end;
+      }
+       
+  }
+
+  /* invisibilité totale tout en restant accessible aux robots spammeurs. */
+.form-hidden {
+  display: none !important;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  position: absolute;
+  left: -9999px;
+  pointer-events: none;
+}
+
+  .booking-pattern-bas{
+    position: absolute;
+    right: 28%;
+    /* top: 64%; */
+    grid-column: 1 / 3;
+    z-index: -3;
+    
+  }
+     
+  .booking-line{
+    position: absolute;
+    left: auto;
+    z-index: -1;
+
+    @media screen and (min-width: 700px){
+      top: 300px;
+      left: 8%;
+    }
+
+    @media screen and (min-width: 1100px){
+      top: 30px;
+      left: 25%;  
+    }
+  }
+
+
+  /* --- Styles du Formulaire (identiques à l'exemple précédent) --- */
+  .reservation-form {
+      display: grid;
+      gap: 20px; /* Espace entre les groupes de champs */
+  }
+
+  .form-group {
+      position: relative;
+      padding-bottom: 20px; /* Espace pour les messages d'erreur */
+  }
+
+  /* Style des champs et select */
+  .reservation-form input[type="text"],
+  .reservation-form input[type="email"],
+  .reservation-form select {
+      width: 100%;
+      padding: 12px 2px; /* Ajuste padding vertical */
+      padding-bottom: 15px;
+      border: none;
+      border-bottom: 1px solid var(--c-form-border);
+      font-size: var(--fs-16);
+      font-weight: 600; /* Texte en gras comme dans l'image */
+      color: var(--color-text-dark);
+      background-color: transparent;
+      transition: border-color 0.3s ease;
+      letter-spacing: -0.2px; /* Léger ajustement */
+  }
+
+  .reservation-form input::placeholder {
+     color: var(--c-grey-450);
+     opacity: 1;
+     font-weight: 600; /* Placeholder en gras aussi */
+  }
+
+  .reservation-form input:focus,
+  .reservation-form select:focus {
+      outline: none;
+      border-bottom-color: var(--c-black);
+  }
+
+  /* Labels pour date/heure */
+  .date-time-label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--color-text-dark);
+      font-size: var(--fs-16);
+  }
+
+  /* Conteneurs pour inputs date/heure */
+  .date-inputs,
+  .time-inputs {
+      display: flex;
+      gap: 15px; /* Espace entre MM/DD/YYYY etc */
+  }
+
+  .date-inputs input,
+  .time-inputs input {
+      flex: 1; /* Partage l'espace */
+      text-align: left;
+  }
+
+  .time-inputs select {
+      flex-basis: 70px; /* Largeur fixe pour AM/PM */
+      padding-right: 30px; /* Espace pour la flèche */
+      text-align: center;
+      appearance: none;
+      /* Flèche SVG personnalisée (couleur --c-brown) */
+      background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%226%22%20fill%3D%22%239e7f66%22%3E%3Cpath%20d%3D%22M0 0l5 5 5-5z%22%2F%3E%3C%2Fsvg%3E') no-repeat right 10px center;
+      background-size: 10px 6px;
+      background-color: transparent;
+  }
+
+  /* Compteur de personnes */
+  .people-counter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--c-form-border);
+  }
+
+  .people-counter button {
+      background: none;
+      border: none;
+      color: var(--c-brown);
+      font-size: var(--fs-20);
+      font-weight: bold;
+      padding: 0 10px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      line-height: 1;
+  }
+  .people-counter button:hover,
+  .people-counter button:focus {
+       color: var(--c-black);
+       outline: none;
+  }
+
+  #peopleCountDisplay {
+      font-weight: 700;
+      font-size: var(--fs-16);
+      color: var(--color-text-dark);
+  }
+
+  /* Bouton de soumission */
+  .submit-reservation {
+     width: 100%;
+     margin-top: 15px;
+     padding: 20px 40px;
+     /* Style hérité de .button.solid, mais on peut surcharger */
+     background-color: var(--c-black);
+     border-color: var(--c-black);
+     color: var(--c-white);
+     font-weight: 600;
+     letter-spacing: 1px;
+  }
+
+   .submit-reservation:hover,
+   .submit-reservation:focus {
+      background-color: var(--c-white);
+      color: var(--c-black);
+      border-color: var(--c-black);
+      outline: 2px solid transparent; /* Pour accessibilité focus */
+      outline-offset: 2px;
+   }
+
+  /* Styles d'erreur */
+  .form-group input.error, /* Champ simple en erreur */
+  .form-group select.error {
+      border-bottom-color: var(--c-error);
+  }
+  .form-group.has-error .error-message { /* Affichage du message */
+      display: block;
+  }
+  /* Cible spécifique pour les champs vides dans un groupe date/heure en erreur */
+   .form-group.has-error input.error-field,
+   .form-group.has-error select.error-field {
+      border-bottom-color: var(--c-error);
+   }
+
+  .error-message {
+      display: none;
+      color: var(--c-error);
+      font-size: var(--fs-14);
+      position: absolute;
+      left: 0;
+      bottom: 0; /* En bas du form-group */
+      font-weight: 500;
+  }
+  .error-message-date-time {
+     /* Positionnement identique par défaut */
+  }
+
+
+  /* Lignes décoratives */
+  .decorative-lines {
+      position: absolute;
+      bottom: -38px; /* Ajuste la position verticale */
+      left: -95px;  /* Ajuste la position horizontale */
+      width: 160px;
+      height: 76px; /* Hauteur nécessaire pour les lignes */
+      display: none; /* Caché par défaut (mobile) */
+      z-index: -1; /* Derrière le formulaire si jamais il y a un chevauchement */
+  }
+
+  .decorative-lines::before,
+  .decorative-lines::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 1px;
+      background-color: var(--c-brown);
+  }
+
+  .decorative-lines::before { top: 0; width: 100%; }
+  .decorative-lines::after { top: 15px; width: 70%; }
+
+  /* Afficher les lignes sur desktop */
+  @media screen and (min-width: 1100px) {
+      .decorative-lines {
+          display: block;
+      }
+  }
+
+  /* --- Responsive spécifique à la page de réservation --- */
+  @media screen and (max-width: 699px) {
+      .booking-hero {
+          min-height: 450px; /* Réduit la hauteur sur mobile */
+          padding-bottom: 150px; /* Moins d'espace pour l'overlap */
+           /* Peut nécessiter une image de fond différente */
+           /* background-image: url('/images/booking/hero-bg-booking-mobile.jpg'); */
+      }
+
+      .booking-form-section {
+          margin-top: -100px; /* Ajuste l'overlap pour mobile */
+           padding-bottom: 60px;
+      }
+
+       /* Empiler les champs date/heure */
+       .date-inputs,
+       .time-inputs {
+          flex-direction: column;
+          gap: 20px; /* Espace vertical entre les champs empilés */
+       }
+       .time-inputs select {
+           flex-basis: auto; /* Reset la base */
+           width: 100%; /* Prend toute la largeur */
+           text-align: left; /* Aligne le texte à gauche */
+           padding-left: 2px; /* Petit padding gauche */
+       }
+  }
+
+} /* Fin du @layer booking-page */

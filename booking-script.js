@@ -1,189 +1,120 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reservationForm');
-    if (!form) {
-        console.log("Formulaire de réservation non trouvé sur cette page.");
-        return;
-    }
+    if (!form) return;
 
-    // Champs du formulaire
-    const nameInput = document.getElementById('name');
+    // Éléments du formulaire
+    const nomInput = document.getElementById('nom');
     const emailInput = document.getElementById('email');
-    const monthInput = document.getElementById('month');
-    const dayInput = document.getElementById('day');
-    const yearInput = document.getElementById('year');
-    const hourInput = document.getElementById('hour');
+    const jourInput = document.getElementById('jour');
+    const moisInput = document.getElementById('mois');
+    const anneeInput = document.getElementById('annee');
+    const heureInput = document.getElementById('heure');
     const minuteInput = document.getElementById('minute');
-    const ampmSelect = document.getElementById('ampm');
+    const periodeSelect = document.getElementById('periode');
+    const personnesInput = document.getElementById('personnes');
 
-    const decreaseBtn = document.getElementById('decreasePeople');
-    const increaseBtn = document.getElementById('increasePeople');
-    const peopleCountValueSpan = document.getElementById('peopleCountValue');
-    const peopleDisplaySpan = document.getElementById('peopleCountDisplay');
-    const peopleHiddenInput = document.getElementById('people');
+    // Gestion du compteur de personnes
+    let currentPeople = 4;
+    const updatePeopleDisplay = () => {
+        document.getElementById('peopleCountValue').textContent = currentPeople;
+        personnesInput.value = currentPeople;
+    };
 
-    // --- Compteur de personnes ---
-    let currentPeople = parseInt(peopleHiddenInput.value, 10) || 4;
-    function updatePeopleDisplay() {
-        peopleCountValueSpan.textContent = currentPeople;
-        peopleHiddenInput.value = currentPeople;
-        peopleDisplaySpan.textContent = `${currentPeople} ${currentPeople === 1 ? 'personne' : 'personnes'}`;
-    }
-
-    decreaseBtn.addEventListener('click', () => {
+    document.getElementById('decreasePeople').addEventListener('click', () => {
         if (currentPeople > 1) {
             currentPeople--;
             updatePeopleDisplay();
         }
     });
 
-    increaseBtn.addEventListener('click', () => {
+    document.getElementById('increasePeople').addEventListener('click', () => {
         currentPeople++;
         updatePeopleDisplay();
     });
 
-    updatePeopleDisplay();
-
-    // --- Auto-Tabulation entre champs date/heure ---
-    function setupAutoTab(currentInput, nextInput, maxLength) {
-        currentInput.addEventListener('input', () => {
-            if (currentInput.value.length >= maxLength && nextInput) {
-                nextInput.focus();
-            }
+    // Auto-tabulation
+    const setupAutoTab = (current, next, maxLength) => {
+        current.addEventListener('input', () => {
+            if (current.value.length >= maxLength && next) next.focus();
         });
-        currentInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && currentInput.value.length === 0) {
-                const prevInput = getPreviousInputInGroup(currentInput);
-                if (prevInput) {
-                    e.preventDefault();
-                    prevInput.focus();
-                }
-            }
-        });
-    }
+    };
 
-    function getPreviousInputInGroup(currentInput) {
-        const dateInputs = [monthInput, dayInput, yearInput];
-        const timeInputs = [hourInput, minuteInput, ampmSelect];
-        let group = dateInputs.includes(currentInput) ? dateInputs
-                  : timeInputs.includes(currentInput) ? timeInputs
-                  : null;
-        if (group) {
-            const idx = group.indexOf(currentInput);
-            if (idx > 0) return group[idx - 1];
-        }
-        return null;
-    }
-
-    setupAutoTab(monthInput, dayInput, 2);
-    setupAutoTab(dayInput, yearInput, 2);
-    setupAutoTab(hourInput, minuteInput, 2);
+    setupAutoTab(moisInput, jourInput, 2);
+    setupAutoTab(jourInput, anneeInput, 2);
+    setupAutoTab(heureInput, minuteInput, 2);
     minuteInput.addEventListener('input', () => {
-        if (minuteInput.value.length >= 2) {
-            ampmSelect.focus();
-        }
-    });
-    ampmSelect.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace') {
-            e.preventDefault();
-            minuteInput.focus();
-            minuteInput.select();
-        }
+        if (minuteInput.value.length >= 2) periodeSelect.focus();
     });
 
-    // --- Validation ---
-    function isValidEmail(email) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
-
-    function showError(inputElement, message) {
-        const formGroup = inputElement.closest('.form-group');
-        if (!formGroup) return;
-        const errorSpan = formGroup.querySelector('.error-message:not(.error-message-date-time)');
-        if (errorSpan) errorSpan.textContent = message;
-        formGroup.classList.add('has-error');
-        inputElement.classList.add('error');
-        inputElement.setAttribute('aria-invalid', 'true');
-        if (errorSpan) {
-            const errorId = inputElement.id + '-error-desc';
-            errorSpan.id = errorId;
-            inputElement.setAttribute('aria-describedby', errorId);
-        }
-    }
-
-    function showGroupError(groupElement, message) {
-        if (!groupElement) return;
-        const errorSpan = groupElement.querySelector('.error-message-date-time');
-        if (errorSpan) errorSpan.textContent = message;
-        groupElement.classList.add('has-error');
-    }
-
-    function clearAllErrors() {
-        form.querySelectorAll('.error-message').forEach(span => {
-            span.textContent = '';
-            span.removeAttribute('id');
-        });
-        form.querySelectorAll('.error, .error-field').forEach(el => {
-            el.classList.remove('error', 'error-field');
-            el.removeAttribute('aria-invalid');
-            el.removeAttribute('aria-describedby');
-        });
-        form.querySelectorAll('.has-error').forEach(group => {
-            group.classList.remove('has-error');
-        });
-    }
-
-    function validateForm() {
+    // Validation
+    const validateForm = () => {
         let valid = true;
-        clearAllErrors();
+        
+        // Réinitialiser les erreurs
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        document.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
 
-        if (!nameInput.value.trim()) {
-            showError(nameInput, 'Ce champ est requis');
+        // Validation des champs
+        if (!nomInput.value.trim()) {
+            showError(nomInput, 'Ce champ est requis');
             valid = false;
         }
+
         if (!emailInput.value.trim()) {
             showError(emailInput, 'Ce champ est requis');
             valid = false;
-        } else if (!isValidEmail(emailInput.value.trim())) {
-            showError(emailInput, 'Veuillez utiliser une adresse e-mail valide');
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+            showError(emailInput, 'Email invalide');
             valid = false;
         }
 
-        const dateFields = [monthInput, dayInput, yearInput];
-        let dateIncomplete = dateFields.some(f => !f.value.trim());
-        if (dateIncomplete) {
-            const dateGroup = monthInput.closest('.form-group');
-            showGroupError(dateGroup, 'Ce champ est incomplet');
-            dateFields.forEach(f => f.classList.add('error-field'));
+        // Validation date
+        if (!jourInput.value || !moisInput.value || !anneeInput.value) {
+            showGroupError(jourInput.closest('.form-group'), 'Date incomplète');
             valid = false;
         }
 
-        const timeFields = [hourInput, minuteInput, ampmSelect];
-        let timeIncomplete = timeFields.some(f => !f.value || f.value.trim() === '');
-        if (timeIncomplete) {
-            const timeGroup = hourInput.closest('.form-group');
-            showGroupError(timeGroup, 'Ce champ est incomplet');
-            timeFields.forEach(f => f.classList.add('error-field'));
+        // Validation heure
+        if (!heureInput.value || !minuteInput.value) {
+            showGroupError(heureInput.closest('.form-group'), 'Heure incomplète');
             valid = false;
         }
 
         return valid;
-    }
+    };
 
-    // --- Soumission du formulaire ---
-    form.addEventListener('submit', (event) => {
-        const isValid = validateForm();
-        if (!isValid) {
-            event.preventDefault(); // Bloque l'envoi uniquement si erreur
-            const firstError = form.querySelector('.error, .error-field');
-            if (firstError) {
-                firstError.focus();
-                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const showError = (input, message) => {
+        const group = input.closest('.form-group');
+        group.classList.add('has-error');
+        group.querySelector('.error-message').textContent = message;
+    };
+
+    const showGroupError = (group, message) => {
+        group.classList.add('has-error');
+        group.querySelector('.error-message').textContent = message;
+    };
+
+    // Soumission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        if (validateForm()) {
+            const formData = new FormData(form);
+            formData.append('date_complete', `${jourInput.value}/${moisInput.value}/${anneeInput.value}`);
+            formData.append('heure_complete', `${heureInput.value}:${minuteInput.value} ${periodeSelect.value}`);
+
+            try {
+                await fetch("/", {
+                    method: "POST",
+                    body: new URLSearchParams(formData),
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" }
+                });
+                
+                window.location.href = "/merci.html";
+            } catch (error) {
+                alert("Erreur d'envoi, veuillez nous appeler");
+                console.error(error);
             }
-        } else {
-            // ✅ Si valide, on laisse Netlify traiter, ET on reset pour être propre
-            form.reset();
-            updatePeopleDisplay(); // Remet le compteur de personnes à jour
         }
     });
 });

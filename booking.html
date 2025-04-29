@@ -18,57 +18,35 @@
     </header>
 
     <main>
-        <!-- ========================== -->
-        <!-- Section Hero Réservation   -->
-        <!-- ========================== -->
         <section class="wrapper hero booking-hero">
-            <!-- Élément pour l'image de fond et l'overlay via CSS -->
             <div class="booking-hero-background fullbleed"></div>
-
-            <!-- Contenu texte du Hero -->
             <div class="booking-intro-text">
                 <h1 class="title">Réservations</h1>
-                <p class="description">Nous avons hâte de vous accueillir. Si vous avez des exigences particulières, n'hésitez pas à nous appeler au numéro de téléphone ci-dessous. Nous serons heureux de vous conseiller.</p>
+                <p class="description">Nous avons hâte de vous accueillir. Si vous avez des exigences particulières, n'hésitez pas à nous appeler au numéro de téléphone ci-dessous.</p>
             </div>
         </section>
 
-        <!-- ========================== -->
-        <!-- Section Formulaire         -->
-        <!-- ========================== -->
         <section class="wrapper booking-form-section">
-            <!-- Conteneur principal du formulaire (fond blanc, ombre, etc.) -->
             <div class="booking-form-container">
-
-                <!-- <form id="reservationForm" class="reservation-form" novalidate> -->
-                    <form 
-                        id="reservationForm"
-                        class="reservation-form"
-                        name="reservation"
-                        method="POST"
-                        data-netlify="true"
-                        action="/merci.html"
-                        novalidate
-                        >
-                        <!-- Important pour que Netlify détecte ton formulaire -->
-                        <input type="hidden" name="form-name" value="reservation" />
-
-                        <!-- <form 
-                        id="reservationForm"
-                        class="reservation-form"
-                        name="reservation"
-                        action="https://formspree.io/f/mwpopgkd"
-                        method="POST"
-                        novalidate
-                    > -->
-                    <!-- Honeypot Formspree (optionnel) -->
-                    <!-- <input type="text" name="_gotcha" style="display:none"> -->
-
-                    <!-- Redirection après envoi -->
-                    <!-- <input type="hidden" name="_next" value="https://legoutlocal.netlify.app/merci.html"> -->
+                <form 
+                    id="reservationForm"
+                    class="reservation-form"
+                    name="reservation"
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    novalidate
+                >
+                    <input type="hidden" name="form-name" value="reservation">
+                    
+                    <!-- Honeypot -->
+                    <div class="form-hidden">
+                        <label>Ne pas remplir : <input name="bot-field"></label>
+                    </div>
 
                     <div class="form-group">
-                        <label for="name" class="visually-hidden">Nom</label>
-                        <input type="text" id="name" name="name" placeholder="Nom" required aria-label="Nom">
+                        <label for="nom" class="visually-hidden">Nom</label>
+                        <input type="text" id="nom" name="nom" placeholder="Nom" required aria-label="Nom">
                         <span class="error-message" aria-live="polite"></span>
                     </div>
 
@@ -81,19 +59,19 @@
                     <div class="form-group form-group-date-time date-group">
                         <label id="date-label" class="date-time-label">Choisissez une date</label>
                         <div class="date-inputs">
-                            <input type="text" id="day" name="day" placeholder="JJ" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="date-label" aria-label="Jour">
-                            <input type="text" id="month" name="month" placeholder="MM" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="date-label" aria-label="Mois">
-                            <input type="text" id="year" name="year" placeholder="AAAA" maxlength="4" pattern="\d*" inputmode="numeric" required aria-labelledby="date-label" aria-label="Année">
+                            <input type="text" id="jour" name="jour" placeholder="JJ" maxlength="2" pattern="\d*" inputmode="numeric" required>
+                            <input type="text" id="mois" name="mois" placeholder="MM" maxlength="2" pattern="\d*" inputmode="numeric" required>
+                            <input type="text" id="annee" name="annee" placeholder="AAAA" maxlength="4" pattern="\d*" inputmode="numeric" required>
                         </div>
-                         <span class="error-message error-message-date-time" aria-live="polite"></span>
+                        <span class="error-message error-message-date-time" aria-live="polite"></span>
                     </div>
 
                     <div class="form-group form-group-date-time time-group">
-                         <label id="time-label" class="date-time-label">Choisissez une heure</label>
+                        <label id="time-label" class="date-time-label">Choisissez une heure</label>
                         <div class="time-inputs">
-                            <input type="text" id="hour" name="hour" placeholder="09" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="time-label" aria-label="Heure">
-                            <input type="text" id="minute" name="minute" placeholder="00" maxlength="2" pattern="\d*" inputmode="numeric" required aria-labelledby="time-label" aria-label="Minute">
-                            <select id="ampm" name="ampm" required aria-labelledby="time-label" aria-label="AM/PM">
+                            <input type="text" id="heure" name="heure" placeholder="09" maxlength="2" pattern="\d*" inputmode="numeric" required>
+                            <input type="text" id="minute" name="minute" placeholder="00" maxlength="2" pattern="\d*" inputmode="numeric" required>
+                            <select id="periode" name="periode" required>
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
@@ -102,20 +80,18 @@
                     </div>
 
                     <div class="form-group people-counter">
-                        <button type="button" id="decreasePeople" aria-label="Diminuer le nombre de personnes">-</button>
+                        <button type="button" id="decreasePeople">-</button>
                         <span id="peopleCountDisplay"><span id="peopleCountValue">4</span> personnes</span>
-                        <input type="hidden" id="people" name="people" value="4">
-                        <button type="button" id="increasePeople" aria-label="Augmenter le nombre de personnes">+</button>
+                        <input type="hidden" id="personnes" name="personnes" value="4">
+                        <button type="button" id="increasePeople">+</button>
                     </div>
 
                     <button type="submit" class="button solid submit-reservation">Faire une réservation</button>
                 </form>
             </div>
-            <img class="booking-pattern-bas hide-on-mobile" src="/motifs/pattern-curve-top-left-bas.svg" alt="" width="895px" height="320px">
-            <!-- Lignes décoratives positionnées par rapport à ce conteneur -->
+            <img class="booking-pattern-bas hide-on-mobile" src="/motifs/pattern-curve-top-left-bas.svg" alt="" width="895" height="320">
             <img class="booking-line" src="/motifs/pattern-lines.svg" alt="">
         </section>
-
     </main>
 
     <!-- Réutilise ton footer existant -->

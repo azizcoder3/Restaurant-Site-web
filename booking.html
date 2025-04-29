@@ -85,7 +85,22 @@
                         <input type="hidden" id="personnes" name="personnes" value="4">
                         <button type="button" id="increasePeople">+</button>
                     </div>
-
+                    <!-- Début du code - Reply-To et Sujet amélioré -->
+                    <div class="form-hidden">
+                    <!-- Champ pour la réponse automatique -->
+                        <input type="hidden" 
+                            name="_replyto" 
+                            id="client-email-reply"
+                            data-netlify-replace="__client_email__ %email%"
+                            value="__client_email__">
+                        
+                        <!-- Sujet d'email combinant nom ET date -->
+                        <input type="hidden" 
+                            name="_subject" 
+                            data-netlify-replace="__reservation_date__ %jour%/%mois%"
+                            value="Réservation du __reservation_date__ - %nom%">
+                    </div>
+                    <!-- Fin du code -->
                     <button type="submit" class="button solid submit-reservation">Faire une réservation</button>
                 </form>
             </div>

@@ -13,6 +13,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const periodeSelect = document.getElementById('periode');
     const personnesInput = document.getElementById('personnes');
 
+    /****************************************************
+     * GESTION DU SUJET D'EMAIL AUTOMATIQUE
+     * 
+     * Ce bloc met à jour dynamiquement le sujet des emails
+     * envoyés par Netlify en combinant :
+     * - La date de réservation (jour/mois)
+     * - Le nom du client
+     * Format final : "Réservation du 25/12 - Jean Dupont"
+     ****************************************************/
+    function updateEmailSubject() {
+        // Formatage à 2 chiffres (ex: 05 au lieu de 5)
+        const day = jourInput.value.padStart(2, '0');
+        const month = moisInput.value.padStart(2, '0');
+        const name = nomInput.value.trim();
+        
+        // Validation minimale avant mise à jour
+        if(day.length === 2 && month.length === 2 && name) {
+            const subjectField = document.querySelector('[name="_subject"]');
+            subjectField.value = `Réservation du ${day}/${month} - ${name}`;
+        }
+    }
+
+    // Écoute les modifications sur les champs concernés
+    jourInput.addEventListener('change', updateEmailSubject);
+    moisInput.addEventListener('change', updateEmailSubject);
+    nomInput.addEventListener('change', updateEmailSubject);
+
     // Gestion du compteur de personnes
     let currentPeople = 4;
     const updatePeopleDisplay = () => {

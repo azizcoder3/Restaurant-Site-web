@@ -1,0 +1,10 @@
+[build]
+  publish = "./"  # Dossier racine contenant index.html
+
+[[redirects]]
+  from = "/reservation"
+  to = "/index.html#reservation"
+  status = 200
+
+[context.production.environment]
+  NETLIFY_FORMS_HANDLE_SUBMISSIONS = "true"  # Active les formulaires
